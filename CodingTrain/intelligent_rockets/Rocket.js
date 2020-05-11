@@ -3,7 +3,7 @@ function Rocket(dna) {
 	this.vel = createVector();
 	this.acc = createVector();
 	this.completed = false;
-	this.crashed = true;
+	this.crashed = false;
 	if (dna) {
 		this.dna = dna;
 	} else {
@@ -21,16 +21,26 @@ function Rocket(dna) {
 			this.pos = target.copy();
 		}
 
+		if (this.pos.x > rx && this.pos.x < rx + rw && this.pos.y > ry && this.pos.y < ry + rh) {
+			this.crashed = true;
+		}
+
+		if (this.pos.x > width || this.pos.x < 0) {
+			this.crashed = true;
+		}
+		
+		if (this.pos.y > height || this.pos.y < 0) {
+			this.crahsed = true;
+		}
+
 		this.applyForce(this.dna.genes[count]);
 		if (!this.completed && !this.crashed) {
 			this.vel.add(this.acc);
 			this.pos.add(this.vel);
 			this.acc.mult(0);
+			this.vel.limit(4);
 		}
 
-		if (this.pos.x > rx && this.pos.x < rx + rw && this.pos.y > ry && this.pos.y < ry + rh) {
-			this.crashed = true;
-		}
 	}
 
 	this.calcFitness = function() {
@@ -40,7 +50,7 @@ function Rocket(dna) {
 			this.fitness *= 10;
 		}
 		if (this.crashed) {
-			this.fitness = 1;
+			this.fitness /= 10;
 		}
 	}
 
