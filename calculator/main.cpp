@@ -15,6 +15,8 @@ double calculate(std::string input) {
         double token = 0;
         if (isdigit(c)):
             token = 
+
+double calculate(std::string input) {
     
 
 int main() {
