@@ -1,0 +1,59 @@
+<html>
+<head>
+	<meta charset="UTF-8">
+    <title> intelligent rockets </title>
+</head>
+<script language="javascript" type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/1.0.0/p5.js"></script>
+<script language="javascript" type="text/javascript" src="Population.js"></script>
+<script language="javascript" type="text/javascript" src="Rocket.js"></script>
+<script language="javascript" type="text/javascript" src="DNA.js"></script>
+<body>
+
+    <script type="text/javascript">
+var population;
+var lifespan = 400;
+var count = 0;
+var lifeP;
+var target;
+
+
+var rx = 100;
+var ry = 150;
+var rw = 200;
+var rh = 10;
+var maxForce = 0.2;
+
+function setup() {
+	createCanvas(400, 300);
+	rocket = new Rocket();
+	population = new Population();
+	lifeP = createP()
+	target = createVector(width/2, 50);
+}
+
+function draw() {
+	background(0);
+	population.run();
+	lifeP.html(count);
+	count++;
+	if ( count == lifespan) {
+		population.evaluate();
+		population.selection();
+		count = 0;
+
+		
+	}
+	
+	fill(255);
+	rect(rx, ry, rw, rh);
+	ellipse(target.x, target.y, 16, 16);
+}
+
+
+
+
+
+    </script>
+
+</body>
+</html>
