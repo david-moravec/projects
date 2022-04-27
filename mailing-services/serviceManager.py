@@ -15,6 +15,7 @@ class ServiceManager(MailingManager):
             print(key, date)
         self.createAndSendMessageBody()
 
+
     @staticmethod
     def getWeekNumber():
         return date.today().isocalendar()[1]
