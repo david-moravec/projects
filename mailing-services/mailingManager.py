@@ -15,10 +15,3 @@ class MailingManager:
         session.sendmail(self.sender, reciever, text)
         session.quit()
         session.sendmail(sender_address, receiver_address, text)
-        session.quit()
-
-
-
-#teslaMaxCyclone = Mailing(sender_address, sender_pass, [receiver_address], message)
-#teslaMaxCyclone.sendMassage()
-#print('Mail Sent')
