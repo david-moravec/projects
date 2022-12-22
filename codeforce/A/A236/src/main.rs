@@ -1,17 +1,18 @@
 use std::io;
 
-fn decide_gender(username: &str) -> usize {
-  let len_username: usize = username.chars().count();
-  println!("len: {}", len_username);
-
-  len_username % 2 as usize
+fn count_uniq_chars(username: &str) -> usize {
+  let mut chars: Vec<char> = username.chars().collect();
+  chars.sort();
+  chars.dedup();
+  
+  chars.len() % 2 as usize
 }
 
 #[test]
 fn test_decide_gender() {
-  assert_eq!(decide_gender("wjmzbmr"), 0);
-  assert_eq!(decide_gender("xiaodao"), 1);
-  assert_eq!(decide_gender("sevenkplus"), 0);
+  assert_eq!(count_uniq_chars("wjmzbmr"), 0);
+  assert_eq!(count_uniq_chars("xiaodao"), 1);
+  assert_eq!(count_uniq_chars("sevenkplus"), 0);
   
 }
 
@@ -24,7 +25,7 @@ fn main() {
     _ => ()
   };
 
-  match decide_gender(&username) {
+  match count_uniq_chars(&username) {
     0 => println!("CHAT WITH HER!"),
     1 => println!("IGNORE HIM!"),
     _ => println!("NO USERNAME!"),
