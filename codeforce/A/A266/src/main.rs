@@ -1,12 +1,5 @@
 use std::io;
 
-fn trim_trailing_spaces(to_trim: &mut String) -> String {
-    let len_after_trim = to_trim.trim_end().len();
-
-    to_trim.to_string()
-    
-}
-
 fn main() {
     let mut stone_row = String::new();
     let mut len_stone_row = String::new();
