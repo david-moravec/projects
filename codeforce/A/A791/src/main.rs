@@ -1,22 +1,5 @@
 use std::io;
-
-fn parse_input(line: &str) -> Option<(i32, i32)> {
-    match line.find(' ') {
-        None => None,
-        Some(index) => {
-            match(&line[..index].parse::<i32>(), &line[index+1..].parse::<i32>()) {
-                (Ok(l), Ok(r)) => Some((*l, *r)),
-                _ => None,
-            }
-        }
-    }
-
-}
-
-#[test]
-fn test_parse_input() {
-    assert_eq!(parse_input("4 9"), Some((4, 9)))
-}
+use util::parse_input_to_int_tuple;
 
 fn years_to_outgrow_bob(limbak: i32, bob: i32) -> i32 {
     // each year the quotient between limbak and bob is increased by 3/2,
@@ -51,7 +34,7 @@ fn main() {
     io::stdin().read_line(&mut input);
     let input = input.strip_suffix("\r\n").unwrap().to_string();
 
-    let (limbak, bob) =  parse_input(&input)
+    let (limbak, bob) =  parse_input_to_int_tuple(&input)
                             .expect("Could not parse input");
     
     println!("{}", years_to_outgrow_bob(limbak, bob));
